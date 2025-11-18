@@ -10,7 +10,7 @@ public class Game {
         return number;
     }
 
-    public String determineWinnings(int userNumber) {
+    public String determineCorrect(int userNumber) {
         int countCorrect = 0;
         int countAlmost = 0;
         int thousandsDigitUser = userNumber / 1000;
@@ -21,14 +21,21 @@ public class Game {
         int tensDigitUser = (userNumber - ((hundredsDigitUser * 100) + (thousandsDigitUser * 1000))) / 10;
         int onesDigitNum = number - ((hundredsDigitNum * 100) + (thousandsDigitNum * 1000) + (tensDigitNum * 10));
         int onesDigitUser = userNumber - ((hundredsDigitUser * 100) + (thousandsDigitUser * 1000) + (tensDigitUser * 10));
-        if (userNumber == number) {
-            return "You got it! The number was " + number;
-        }
         if (thousandsDigitUser == thousandsDigitNum) {
             countCorrect++;
-        } else if (thousandsDigitUser == hundredsDigitUser) || (thousandsDigitUser == tensDigitNum) || (thousandsDigitUser == onesDigitNum) {
+        } else if ((thousandsDigitUser == hundredsDigitNum) || (thousandsDigitUser == tensDigitNum) || (thousandsDigitUser == onesDigitNum)) {
             countAlmost++;
         }
-        return "You have " + countCorrect + "numbers in the correct place and " + countAlmost + "correct numbers in the wrong place";
+        if (hundredsDigitUser == hundredsDigitNum) {
+            countCorrect++;
+        } else if ((hundredsDigitUser == tensDigitNum) || (hundredsDigitUser == onesDigitNum)) {
+            countAlmost++;
+        }
+        if (tensDigitUser == tensDigitNum) {
+            countCorrect++;
+        } else if ((tensDigitUser == onesDigitNum)) {
+            countAlmost++;
+        }
+        return "You have " + countCorrect + " correct numbers in the correct place and " + countAlmost + " correct numbers in the wrong place";
     }
 }
