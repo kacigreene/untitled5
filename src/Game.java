@@ -22,28 +22,65 @@ public class Game {
         int onesDigitNum = number - ((hundredsDigitNum * 100) + (thousandsDigitNum * 1000) + (tensDigitNum * 10));
         int onesDigitUser = userNumber - ((hundredsDigitUser * 100) + (thousandsDigitUser * 1000) + (tensDigitUser * 10));
 
-        System.out.println(thousandsDigitUser + " " + hundredsDigitUser + " " + tensDigitUser + " " + onesDigitUser);
-        System.out.println(thousandsDigitNum + " " + hundredsDigitNum + " " + tensDigitNum + " " + onesDigitNum);
-
-
-        if (thousandsDigitUser == thousandsDigitNum) {
+        if (onesDigitNum == onesDigitUser) {
             countCorrect++;
-        } else if ((thousandsDigitUser == hundredsDigitNum) || (thousandsDigitUser == tensDigitNum) || (thousandsDigitUser == onesDigitNum)) {
-            countAlmost++;
-        }
-        if (hundredsDigitUser == hundredsDigitNum) {
-            countCorrect++;
-        } else if ((hundredsDigitUser == tensDigitNum) || (hundredsDigitUser == onesDigitNum)) {
-            countAlmost++;
+            onesDigitNum = -1;
+            onesDigitUser = -2;
         }
         if (tensDigitUser == tensDigitNum) {
             countCorrect++;
-        } else if ((tensDigitUser == onesDigitNum)) {
-            countAlmost++;
+            tensDigitNum = -1;
+            tensDigitUser = -2;
         }
-        if (onesDigitNum == onesDigitUser) {
+        if (hundredsDigitUser == hundredsDigitNum) {
             countCorrect++;
+            hundredsDigitNum = -1;
+            hundredsDigitUser = -2;
         }
+        if (thousandsDigitUser == thousandsDigitNum) {
+            countCorrect++;
+            thousandsDigitNum = -1;
+            thousandsDigitUser = -2;
+        }
+
+        if (onesDigitUser != -2 && (onesDigitUser == tensDigitNum || onesDigitUser == hundredsDigitNum || onesDigitUser == thousandsDigitNum)) {
+            countAlmost++;
+            if (onesDigitUser == tensDigitNum) {
+                tensDigitNum = -1;
+            } else if (onesDigitUser == hundredsDigitNum) {
+                hundredsDigitNum = -1;
+            } else tensDigitNum = -1;
+        }
+
+        if (tensDigitUser != -2 && (tensDigitUser == onesDigitNum || tensDigitUser == hundredsDigitNum || tensDigitUser == thousandsDigitNum)) {
+            countAlmost++;
+            if (tensDigitUser == onesDigitNum) {
+                onesDigitNum = -1;
+            } else if (tensDigitUser == hundredsDigitNum) {
+                hundredsDigitNum = -1;
+            } else thousandsDigitNum = -1;
+        }
+
+        if (hundredsDigitUser != -2 && (hundredsDigitUser == onesDigitNum || hundredsDigitUser == tensDigitNum || hundredsDigitUser == thousandsDigitNum)) {
+            countAlmost++;
+            if (hundredsDigitUser == onesDigitNum) {
+                onesDigitNum = -1;
+            } else if (hundredsDigitUser == tensDigitNum) {
+                tensDigitNum = -1;
+            } else thousandsDigitNum = -1;
+        }
+
+        if (thousandsDigitUser != -2 && (thousandsDigitUser == onesDigitNum || thousandsDigitUser == tensDigitNum || thousandsDigitUser == hundredsDigitNum)) {
+            countAlmost++;
+            if (thousandsDigitUser == onesDigitNum) {
+                onesDigitNum = -1;
+            } else if (tensDigitUser == tensDigitNum) {
+                tensDigitNum = -1;
+            } else hundredsDigitUser = -1;
+        }
+
         return "You have " + countCorrect + " correct numbers in the correct place and " + countAlmost + " correct numbers in the wrong place";
     }
 }
+
+

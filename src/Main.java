@@ -18,7 +18,6 @@ public class Main {
                 System.out.println("You lost! the number was " + l.info());
             }
         }
-
     }
 }
 
