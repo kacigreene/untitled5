@@ -21,6 +21,11 @@ public class Game {
         int tensDigitUser = (userNumber - ((hundredsDigitUser * 100) + (thousandsDigitUser * 1000))) / 10;
         int onesDigitNum = number - ((hundredsDigitNum * 100) + (thousandsDigitNum * 1000) + (tensDigitNum * 10));
         int onesDigitUser = userNumber - ((hundredsDigitUser * 100) + (thousandsDigitUser * 1000) + (tensDigitUser * 10));
+
+        System.out.println(thousandsDigitUser + " " + hundredsDigitUser + " " + tensDigitUser + " " + onesDigitUser);
+        System.out.println(thousandsDigitNum + " " + hundredsDigitNum + " " + tensDigitNum + " " + onesDigitNum);
+
+
         if (thousandsDigitUser == thousandsDigitNum) {
             countCorrect++;
         } else if ((thousandsDigitUser == hundredsDigitNum) || (thousandsDigitUser == tensDigitNum) || (thousandsDigitUser == onesDigitNum)) {
@@ -35,6 +40,9 @@ public class Game {
             countCorrect++;
         } else if ((tensDigitUser == onesDigitNum)) {
             countAlmost++;
+        }
+        if (onesDigitNum == onesDigitUser) {
+            countCorrect++;
         }
         return "You have " + countCorrect + " correct numbers in the correct place and " + countAlmost + " correct numbers in the wrong place";
     }
