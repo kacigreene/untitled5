@@ -18,11 +18,12 @@ public class Main {
             System.out.print("Enter your guess (4 digit number): ");
             int userNumber = s.nextInt();
             System.out.println(l.determineCorrect(userNumber));
+            System.out.println("Guesses left: " + (maxGuesses - count - 1));
             guess ++;
             if (l.info() == userNumber) {
                 System.out.println("You got it! It took you " + guess + " guesses.");
                 break;
-            } else if (count < 14) {
+            } else if (count < maxGuesses-1) {
                 System.out.println("Try again");
             } else {
                 System.out.println("You lost! the number was " + l.info());
